@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Exam Tickets data",
+  "type": "object",
+  "required": ["ticketCount", "luckyTicket", "topics", "questions"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "ticketCount": {
+      "description": "Total number of tiles on the board, including lucky tickets.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "luckyTicket": {
+      "description": "Tickets with a fun message instead of questions. Set count to 0 to disable.",
+      "type": "object",
+      "required": ["count", "title", "text"],
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "title": { "$ref": "#/definitions/localized" },
+        "text": { "$ref": "#/definitions/localized" }
+      },
+      "additionalProperties": false
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "color"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "$ref": "#/definitions/localized" },
+          "color": {
+            "enum": ["amber", "sky", "rose", "emerald", "violet", "orange", "teal", "slate"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/definitions/question" }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "localized": {
+      "type": "object",
+      "required": ["en", "ru"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ru": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "question": {
+      "type": "object",
+      "required": ["id", "topic", "question", "answer"],
+      "properties": {
+        "id": { "description": "Unique id, e.g. \"js-loops\".", "type": "string", "minLength": 1 },
+        "topic": { "description": "Must match one of the topic ids.", "type": "string" },
+        "question": { "$ref": "#/definitions/localized" },
+        "code": { "description": "Optional code shown under the question. Use \\n for new lines.", "type": "string" },
+        "answer": { "$ref": "#/definitions/localized" },
+        "answerCode": { "description": "Optional code shown with the answer in teacher mode.", "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

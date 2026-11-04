@@ -1,0 +1,494 @@
+{
+  "$schema": "./questions.schema.json",
+  "ticketCount": 35,
+  "luckyTicket": {
+    "count": 2,
+    "title": {
+      "en": "Lucky ticket!",
+      "ru": "Счастливый билет!"
+    },
+    "text": {
+      "en": "You got a lucky ticket! Silently stand up, do one squat and sit back down in your seat.",
+      "ru": "Вам попался счастливый билет! Молча встаньте и, сделав одно приседание, сядьте на своё место."
+    }
+  },
+  "topics": [
+    {
+      "id": "js",
+      "label": {
+        "en": "JavaScript",
+        "ru": "JavaScript"
+      },
+      "color": "amber"
+    },
+    {
+      "id": "http",
+      "label": {
+        "en": "HTTP",
+        "ru": "HTTP"
+      },
+      "color": "sky"
+    },
+    {
+      "id": "auth",
+      "label": {
+        "en": "Authentication & Authorization",
+        "ru": "Аутентификация и авторизация"
+      },
+      "color": "rose"
+    },
+    {
+      "id": "postgres",
+      "label": {
+        "en": "PostgreSQL",
+        "ru": "PostgreSQL"
+      },
+      "color": "emerald"
+    }
+  ],
+  "questions": [
+    {
+      "id": "js-let-const-var",
+      "topic": "js",
+      "question": {
+        "en": "What is the difference between let, const and var?",
+        "ru": "Чем отличаются let, const и var?"
+      },
+      "answer": {
+        "en": "let and const are block-scoped ({ ... }). const cannot be reassigned, but the contents of a const object or array can still change. var is function-scoped, is hoisted with the value undefined and can be redeclared. Use const by default, let when the value changes, and avoid var.",
+        "ru": "let и const имеют блочную область видимости ({ ... }). const нельзя переприсвоить, но содержимое объекта или массива в const менять можно. var видна во всей функции, поднимается (hoisting) со значением undefined и может объявляться повторно. По умолчанию используйте const, let — если значение меняется, var — не используйте."
+      }
+    },
+    {
+      "id": "js-types",
+      "topic": "js",
+      "question": {
+        "en": "Name the data types in JavaScript. What does typeof return for null, undefined, NaN and a function?",
+        "ru": "Назовите типы данных в JavaScript. Что вернёт typeof для null, undefined, NaN и функции?"
+      },
+      "code": "typeof null;\ntypeof undefined;\ntypeof NaN;\ntypeof function () {};",
+      "answer": {
+        "en": "7 primitives: number, bigint, string, boolean, null, undefined, symbol, plus object. Results: \"object\" (a historical bug kept for compatibility), \"undefined\", \"number\" (NaN is a special number value), \"function\" (functions are objects, but typeof reports them separately).",
+        "ru": "7 примитивов: number, bigint, string, boolean, null, undefined, symbol, и object. Результаты: \"object\" (историческая ошибка, оставлена для совместимости), \"undefined\", \"number\" (NaN — особое числовое значение), \"function\" (функции — объекты, но typeof выделяет их отдельно)."
+      }
+    },
+    {
+      "id": "js-conversion",
+      "topic": "js",
+      "question": {
+        "en": "Predict the result of each expression and explain the rule.",
+        "ru": "Предскажите результат каждого выражения и объясните правило."
+      },
+      "code": "\"5\" + 3\n\"5\" - 3\n\"5\" * \"2\"\ntrue + 1\n\"\" + 1 + 0\n\"4px\" - 2\nnull + 1\nundefined + 1",
+      "answer": {
+        "en": "\"53\", 2, 10, 2, \"10\", NaN, 1, NaN. Binary + concatenates if either side is a string. Other math operators (-, *, /) always convert to numbers: true → 1, null → 0, undefined → NaN, \"4px\" → NaN.",
+        "ru": "\"53\", 2, 10, 2, \"10\", NaN, 1, NaN. Бинарный + склеивает строки, если хотя бы один операнд — строка. Остальные математические операторы (-, *, /) всегда приводят к числу: true → 1, null → 0, undefined → NaN, \"4px\" → NaN."
+      }
+    },
+    {
+      "id": "js-equality",
+      "topic": "js",
+      "question": {
+        "en": "What is the difference between == and ===? Which one should you use?",
+        "ru": "Чем отличаются == и ===? Какой из них стоит использовать?"
+      },
+      "answer": {
+        "en": "=== (strict equality) compares without type conversion: 1 === \"1\" is false. == converts types first: 1 == \"1\" is true, 0 == \"\" is true. Special case: null == undefined is true, but null === undefined is false. NaN is not equal to anything, even itself; use Number.isNaN(). Use === by default.",
+        "ru": "=== (строгое равенство) сравнивает без приведения типов: 1 === \"1\" — false. == сначала приводит типы: 1 == \"1\" — true, 0 == \"\" — true. Особый случай: null == undefined — true, а null === undefined — false. NaN не равен ничему, даже себе — используйте Number.isNaN(). По умолчанию используйте ===."
+      }
+    },
+    {
+      "id": "js-truthy-falsy",
+      "topic": "js",
+      "question": {
+        "en": "Which values are falsy in JavaScript? Is \"0\" truthy or falsy? What about [] and {}?",
+        "ru": "Какие значения в JavaScript являются ложными (falsy)? \"0\" — truthy или falsy? А [] и {}?"
+      },
+      "answer": {
+        "en": "Falsy values: false, 0, -0, 0n, \"\" (empty string), null, undefined, NaN. Everything else is truthy, including \"0\", \" \", \"false\", [] and {}. Example: !!\"0\" is true.",
+        "ru": "Ложные значения: false, 0, -0, 0n, \"\" (пустая строка), null, undefined, NaN. Всё остальное — truthy, включая \"0\", \" \", \"false\", [] и {}. Например, !!\"0\" — true."
+      }
+    },
+    {
+      "id": "js-logical",
+      "topic": "js",
+      "question": {
+        "en": "How do || and && work and what do they return? Predict the output.",
+        "ru": "Как работают || и && и что они возвращают? Предскажите вывод."
+      },
+      "code": "console.log(null || 0 || \"\" || \"hi\");\nconsole.log(1 && 2 && null && 3);\nconsole.log(!!\"0\");",
+      "answer": {
+        "en": "|| returns the first truthy value (or the last value if none is truthy). && returns the first falsy value (or the last value if all are truthy). Both short-circuit: they stop evaluating once the result is known. Output: \"hi\", null, true.",
+        "ru": "|| возвращает первое истинное значение (или последнее, если истинных нет). && возвращает первое ложное значение (или последнее, если все истинны). Оба работают «по короткой схеме» — останавливаются, когда результат известен. Вывод: \"hi\", null, true."
+      }
+    },
+    {
+      "id": "js-loops",
+      "topic": "js",
+      "question": {
+        "en": "Tell about loops in JavaScript: which kinds exist and when do you use each one?",
+        "ru": "Расскажите о циклах в JavaScript: какие бывают и когда какой использовать?"
+      },
+      "answer": {
+        "en": "for — when the number of iterations is known (counter). while — repeats while a condition is true. do...while — like while, but the body runs at least once. for...of — iterates values of arrays, strings and other iterables. for...in — iterates object keys. break exits the loop, continue skips to the next iteration.",
+        "ru": "for — когда известно количество повторений (счётчик). while — повторяет, пока условие истинно. do...while — как while, но тело выполнится минимум один раз. for...of — перебирает значения массивов, строк и других итерируемых объектов. for...in — перебирает ключи объекта. break выходит из цикла, continue переходит к следующей итерации."
+      },
+      "answerCode": "for (let i = 0; i < 3; i++) console.log(i);\n\nlet n = 0;\nwhile (n < 3) n++;\n\nfor (const value of [10, 20]) console.log(value);\nfor (const key in { a: 1, b: 2 }) console.log(key);"
+    },
+    {
+      "id": "js-fizzbuzz",
+      "topic": "js",
+      "question": {
+        "en": "Write FizzBuzz for numbers 1 to 15: multiples of 3 → \"Fizz\", of 5 → \"Buzz\", of both → \"FizzBuzz\", otherwise the number. Why does the order of checks matter?",
+        "ru": "Напишите FizzBuzz для чисел от 1 до 15: кратно 3 → «Fizz», кратно 5 → «Buzz», кратно и 3, и 5 → «FizzBuzz», иначе — число. Почему важен порядок проверок?"
+      },
+      "answer": {
+        "en": "The \"both\" check (i % 15 === 0) must come first; otherwise 15 would match i % 3 first and print only \"Fizz\".",
+        "ru": "Проверка «кратно обоим» (i % 15 === 0) должна идти первой, иначе 15 сначала совпадёт с i % 3 и выведется только «Fizz»."
+      },
+      "answerCode": "for (let i = 1; i <= 15; i++) {\n  if (i % 15 === 0) console.log(\"FizzBuzz\");\n  else if (i % 3 === 0) console.log(\"Fizz\");\n  else if (i % 5 === 0) console.log(\"Buzz\");\n  else console.log(i);\n}"
+    },
+    {
+      "id": "js-arrow",
+      "topic": "js",
+      "question": {
+        "en": "What are arrow functions? How are they different from regular functions? Rewrite sum(a, b) as an arrow function.",
+        "ru": "Что такое стрелочные функции? Чем они отличаются от обычных? Перепишите sum(a, b) стрелочной функцией."
+      },
+      "answer": {
+        "en": "A shorter syntax; with one expression the result is returned implicitly. Arrow functions have no own this (they take it from the outer scope), no arguments object, and cannot be called with new.",
+        "ru": "Короткий синтаксис; если тело — одно выражение, результат возвращается неявно. У стрелочных функций нет своего this (берётся из внешней области), нет arguments, их нельзя вызывать с new."
+      },
+      "answerCode": "function sum(a, b) {\n  return a + b;\n}\n\nconst sumExpr = function (a, b) { return a + b; };\nconst sumArrow = (a, b) => a + b;"
+    },
+    {
+      "id": "js-callbacks",
+      "topic": "js",
+      "question": {
+        "en": "What is a callback? Write checkAge(age, onAdult, onChild) that calls onAdult if age >= 18, otherwise onChild.",
+        "ru": "Что такое callback (функция обратного вызова)? Напишите checkAge(age, onAdult, onChild), которая вызывает onAdult, если age >= 18, иначе onChild."
+      },
+      "answer": {
+        "en": "A callback is a function passed as an argument to another function, to be called later. Examples: setTimeout, addEventListener, array methods like map and filter.",
+        "ru": "Callback — функция, переданная другой функции как аргумент, чтобы та вызвала её позже. Примеры: setTimeout, addEventListener, методы массивов map, filter."
+      },
+      "answerCode": "function checkAge(age, onAdult, onChild) {\n  if (age >= 18) onAdult();\n  else onChild();\n}\n\ncheckAge(20,\n  () => console.log(\"Access granted\"),\n  () => console.log(\"Access denied\"));"
+    },
+    {
+      "id": "js-object-basics",
+      "topic": "js",
+      "question": {
+        "en": "How do you create an object, add and change a property, delete a property and check whether a property exists?",
+        "ru": "Как создать объект, добавить и изменить свойство, удалить свойство и проверить, есть ли оно?"
+      },
+      "answer": {
+        "en": "Create with a literal {}. Access with dot (user.name) or brackets (user[\"name\"]; brackets are needed for dynamic keys). Remove with delete. Check with the in operator: \"age\" in user. Comparing to undefined fails if the property exists but holds undefined.",
+        "ru": "Создаём литералом {}. Доступ — через точку (user.name) или скобки (user[\"name\"]; скобки нужны для динамических ключей). Удаление — delete. Проверка — оператор in: \"age\" in user. Сравнение с undefined ошибается, если свойство есть, но равно undefined."
+      },
+      "answerCode": "const user = { name: \"Ali\", age: 20 };\nuser.isAdmin = true;\nuser.name = \"Aigerim\";\ndelete user.age;\nconsole.log(\"age\" in user); // false"
+    },
+    {
+      "id": "js-references",
+      "topic": "js",
+      "question": {
+        "en": "Predict the output. How are objects stored and compared?",
+        "ru": "Предскажите вывод. Как объекты хранятся и сравниваются?"
+      },
+      "code": "let a = { x: 1 };\nlet b = a;\nb.x = 2;\nconsole.log(a.x);\nconsole.log(a === b);\nconsole.log({} === {});",
+      "answer": {
+        "en": "2, true, false. A variable holds a reference to the object, not the object itself. b = a copies the reference, so both point to the same object. Objects are compared by reference: two separate {} are different objects.",
+        "ru": "2, true, false. Переменная хранит ссылку на объект, а не сам объект. b = a копирует ссылку — обе переменные указывают на один объект. Объекты сравниваются по ссылке: два разных {} — разные объекты."
+      }
+    },
+    {
+      "id": "js-strings",
+      "topic": "js",
+      "question": {
+        "en": "Are strings mutable in JavaScript? Name common string methods and write capitalize(str).",
+        "ru": "Изменяемы ли строки в JavaScript? Назовите часто используемые методы строк и напишите capitalize(str)."
+      },
+      "code": "capitalize(\"hello\"); // \"Hello\"\ncapitalize(\"\");      // \"\"",
+      "answer": {
+        "en": "Strings are immutable: methods return a new string. Common: length, at(), slice(), includes(), indexOf(), toUpperCase(), toLowerCase(), trim(), split(), replace().",
+        "ru": "Строки неизменяемы: методы возвращают новую строку. Часто используемые: length, at(), slice(), includes(), indexOf(), toUpperCase(), toLowerCase(), trim(), split(), replace()."
+      },
+      "answerCode": "function capitalize(str) {\n  if (!str) return str;\n  return str[0].toUpperCase() + str.slice(1);\n}"
+    },
+    {
+      "id": "js-array-methods",
+      "topic": "js",
+      "question": {
+        "en": "Explain map, filter, find and reduce. Using the array, get the names, the adults (18+), the user \"Nurlan\" and the sum of ages.",
+        "ru": "Объясните map, filter, find и reduce. Используя массив, получите имена, совершеннолетних (18+), пользователя «Nurlan» и сумму возрастов."
+      },
+      "code": "const users = [\n  { name: \"Aibek\", age: 17 },\n  { name: \"Aigerim\", age: 22 },\n  { name: \"Nurlan\", age: 19 },\n  { name: \"Dana\", age: 15 },\n];",
+      "answer": {
+        "en": "map transforms each element into a new array of the same length. filter keeps elements where the callback returns true. find returns the first matching element (or undefined). reduce folds the array into one value. None of them mutate the original. Sum of ages: 73.",
+        "ru": "map преобразует каждый элемент в новый массив той же длины. filter оставляет элементы, для которых колбэк вернул true. find возвращает первый подходящий элемент (или undefined). reduce сворачивает массив в одно значение. Ни один не изменяет исходный массив. Сумма возрастов: 73."
+      },
+      "answerCode": "users.map(u => u.name);\nusers.filter(u => u.age >= 18);\nusers.find(u => u.name === \"Nurlan\");\nusers.reduce((sum, u) => sum + u.age, 0); // 73"
+    },
+    {
+      "id": "http-what",
+      "topic": "http",
+      "question": {
+        "en": "What is HTTP? How does the request–response model work? What does \"HTTP is stateless\" mean?",
+        "ru": "Что такое HTTP? Как работает модель «запрос–ответ»? Что значит «HTTP не хранит состояние» (stateless)?"
+      },
+      "answer": {
+        "en": "HTTP (HyperText Transfer Protocol) is an application-level protocol for client–server communication. The client (browser, app) sends a request, and the server returns a response. Stateless: each request is independent, and the server doesn't remember previous requests on its own. State is added with cookies, sessions or tokens. HTTPS is HTTP over an encrypted TLS connection.",
+        "ru": "HTTP (HyperText Transfer Protocol) — протокол прикладного уровня для общения клиента и сервера. Клиент (браузер, приложение) отправляет запрос, сервер возвращает ответ. Stateless: каждый запрос независим, сервер сам по себе не помнит предыдущие запросы. Состояние добавляют через cookies, сессии или токены. HTTPS — это HTTP поверх зашифрованного соединения TLS."
+      }
+    },
+    {
+      "id": "http-request-parts",
+      "topic": "http",
+      "question": {
+        "en": "What does an HTTP request consist of? Describe each part.",
+        "ru": "Из чего состоит HTTP-запрос? Опишите каждую часть."
+      },
+      "answer": {
+        "en": "1) Start line: method, path (URL) and protocol version. 2) Headers: key–value metadata (Host, Content-Type, Authorization...). 3) An empty line that separates headers from the body. 4) Body (optional): the data being sent, e.g. JSON in POST/PUT/PATCH. GET usually has no body.",
+        "ru": "1) Стартовая строка: метод, путь (URL) и версия протокола. 2) Заголовки: метаданные «ключ: значение» (Host, Content-Type, Authorization...). 3) Пустая строка, отделяющая заголовки от тела. 4) Тело (необязательно): передаваемые данные, например JSON в POST/PUT/PATCH. У GET тела обычно нет."
+      },
+      "answerCode": "POST /api/users HTTP/1.1\nHost: example.com\nContent-Type: application/json\nAuthorization: Bearer eyJhbGci...\n\n{ \"name\": \"Ali\", \"age\": 20 }"
+    },
+    {
+      "id": "http-response-parts",
+      "topic": "http",
+      "question": {
+        "en": "What does an HTTP response consist of? Describe each part.",
+        "ru": "Из чего состоит HTTP-ответ? Опишите каждую часть."
+      },
+      "answer": {
+        "en": "1) Status line: protocol version, status code and reason phrase (HTTP/1.1 200 OK). 2) Headers: Content-Type, Content-Length, Set-Cookie, Cache-Control... 3) Empty line. 4) Body: HTML, JSON, a file, or nothing (e.g. 204 No Content).",
+        "ru": "1) Строка статуса: версия протокола, код статуса и текстовое описание (HTTP/1.1 200 OK). 2) Заголовки: Content-Type, Content-Length, Set-Cookie, Cache-Control... 3) Пустая строка. 4) Тело: HTML, JSON, файл или ничего (например, 204 No Content)."
+      },
+      "answerCode": "HTTP/1.1 201 Created\nContent-Type: application/json\nLocation: /api/users/42\n\n{ \"id\": 42, \"name\": \"Ali\" }"
+    },
+    {
+      "id": "http-methods",
+      "topic": "http",
+      "question": {
+        "en": "List the main HTTP methods and what each one is used for.",
+        "ru": "Перечислите основные HTTP-методы и для чего используется каждый."
+      },
+      "answer": {
+        "en": "GET — read a resource. POST — create a resource or send data for processing. PUT — fully replace a resource. PATCH — partially update a resource. DELETE — delete a resource. HEAD — like GET but only headers, no body. OPTIONS — ask which methods are allowed (used by CORS preflight).",
+        "ru": "GET — получить ресурс. POST — создать ресурс или отправить данные на обработку. PUT — полностью заменить ресурс. PATCH — частично обновить ресурс. DELETE — удалить ресурс. HEAD — как GET, но только заголовки, без тела. OPTIONS — узнать, какие методы разрешены (используется в CORS preflight)."
+      }
+    },
+    {
+      "id": "http-get-post",
+      "topic": "http",
+      "question": {
+        "en": "What is the difference between GET and POST?",
+        "ru": "Чем отличаются GET и POST?"
+      },
+      "answer": {
+        "en": "GET reads data. Parameters go in the URL query string (?page=2), there is no body, it can be cached and bookmarked, and it must not change data on the server. POST sends data in the request body to create something or trigger an action. It is not cached by default, and repeating it may create duplicates.",
+        "ru": "GET получает данные: параметры передаются в строке запроса URL (?page=2), тела нет, его можно кэшировать и сохранить в закладки, он не должен менять данные на сервере. POST отправляет данные в теле запроса, чтобы что-то создать или выполнить действие; по умолчанию не кэшируется, повтор может создать дубликаты."
+      }
+    },
+    {
+      "id": "http-put-patch",
+      "topic": "http",
+      "question": {
+        "en": "What is the difference between PUT and PATCH? Give an example for a user { name, email, age }.",
+        "ru": "Чем отличаются PUT и PATCH? Приведите пример для пользователя { name, email, age }."
+      },
+      "answer": {
+        "en": "PUT replaces the whole resource: you send all fields, and missing fields may be cleared. PATCH updates only the fields you send. To change only the email: PATCH /users/1 with { \"email\": \"new@mail.com\" }. With PUT you would send name, email and age.",
+        "ru": "PUT заменяет ресурс целиком: отправляются все поля, отсутствующие могут обнулиться. PATCH обновляет только переданные поля. Чтобы поменять только email: PATCH /users/1 с { \"email\": \"new@mail.com\" }. С PUT нужно отправить name, email и age."
+      }
+    },
+    {
+      "id": "http-status-classes",
+      "topic": "http",
+      "question": {
+        "en": "What classes of HTTP status codes exist? Give one example from each class.",
+        "ru": "Какие классы HTTP-кодов состояния существуют? Приведите по одному примеру из каждого класса."
+      },
+      "answer": {
+        "en": "1xx — informational (101 Switching Protocols). 2xx — success (200 OK). 3xx — redirection (301 Moved Permanently). 4xx — client error, the request is wrong (404 Not Found). 5xx — server error, the request was fine but the server failed (500 Internal Server Error).",
+        "ru": "1xx — информационные (101 Switching Protocols). 2xx — успех (200 OK). 3xx — перенаправление (301 Moved Permanently). 4xx — ошибка клиента, неверный запрос (404 Not Found). 5xx — ошибка сервера, запрос корректен, но сервер не справился (500 Internal Server Error)."
+      }
+    },
+    {
+      "id": "http-503-504",
+      "topic": "http",
+      "question": {
+        "en": "What do 503 Service Unavailable and 504 Gateway Timeout mean? How are they different?",
+        "ru": "Что означают 503 Service Unavailable и 504 Gateway Timeout? Чем они отличаются?"
+      },
+      "answer": {
+        "en": "503 — the server is temporarily unable to handle requests: overloaded or in maintenance. It may include a Retry-After header. 504 — a gateway or proxy waited for the upstream server but didn't get a response in time (e.g. a slow DB query makes the backend exceed nginx's timeout). In short, 503: \"I can't right now\"; 504: \"the server behind me didn't answer in time\".",
+        "ru": "503 — сервер временно не может обрабатывать запросы: перегружен или на обслуживании; может прийти заголовок Retry-After. 504 — шлюз или прокси ждал ответа от вышестоящего сервера, но не дождался вовремя (например, медленный запрос к БД, и бэкенд превысил таймаут nginx). Коротко, 503: «сейчас не могу»; 504: «сервер за мной не ответил вовремя»."
+      }
+    },
+    {
+      "id": "http-choose-code",
+      "topic": "http",
+      "question": {
+        "en": "Which status code would you return in each case?",
+        "ru": "Какой код состояния вы вернёте в каждом случае?"
+      },
+      "code": "a) a new user was successfully created\nb) the request body is broken JSON\nc) order with id 999 does not exist\nd) an unhandled exception in the code\ne) nginx did not get a response from the backend in time\nf) the user deleted a post, nothing to return",
+      "answer": {
+        "en": "a) 201 Created, b) 400 Bad Request, c) 404 Not Found, d) 500 Internal Server Error, e) 504 Gateway Timeout, f) 204 No Content.",
+        "ru": "a) 201 Created, b) 400 Bad Request, c) 404 Not Found, d) 500 Internal Server Error, e) 504 Gateway Timeout, f) 204 No Content."
+      }
+    },
+    {
+      "id": "auth-difference",
+      "topic": "auth",
+      "question": {
+        "en": "What is the difference between authentication and authorization? Which one happens first?",
+        "ru": "Чем отличается аутентификация от авторизации? Что происходит первым?"
+      },
+      "answer": {
+        "en": "Authentication answers \"Who are you?\": verifying identity (login + password, code from SMS, fingerprint). Authorization answers \"What are you allowed to do?\": checking permissions (only an admin can delete users). Authentication comes first: you can't check permissions without knowing who the user is.",
+        "ru": "Аутентификация отвечает на вопрос «Кто ты?» — проверка личности (логин + пароль, код из SMS, отпечаток пальца). Авторизация отвечает на вопрос «Что тебе разрешено?» — проверка прав (только админ может удалять пользователей). Сначала аутентификация: нельзя проверить права, не зная, кто пользователь."
+      }
+    },
+    {
+      "id": "auth-classify",
+      "topic": "auth",
+      "question": {
+        "en": "Is each case authentication or authorization?",
+        "ru": "Каждый случай — это аутентификация или авторизация?"
+      },
+      "code": "a) entering login and password\nb) only admins can open /admin\nc) unlocking a phone with a fingerprint\nd) a user can edit only their own posts\ne) entering a 2FA code from an app\nf) a document is shared as \"view only\"",
+      "answer": {
+        "en": "Authentication: a, c, e (proving identity). Authorization: b, d, f (checking what an already identified user is allowed to do).",
+        "ru": "Аутентификация: a, c, e (подтверждение личности). Авторизация: b, d, f (проверка того, что разрешено уже опознанному пользователю)."
+      }
+    },
+    {
+      "id": "auth-401-403",
+      "topic": "auth",
+      "question": {
+        "en": "What is the difference between 401 Unauthorized and 403 Forbidden? How do they relate to authentication and authorization?",
+        "ru": "Чем отличается 401 Unauthorized от 403 Forbidden? Как они связаны с аутентификацией и авторизацией?"
+      },
+      "answer": {
+        "en": "401 is about authentication despite its name: the server doesn't know who you are (no token, invalid or expired token), so log in and retry. 403 is about authorization: the server knows who you are, but you don't have permission (a regular user opening an admin endpoint). Logging in again won't help.",
+        "ru": "401, несмотря на название, — про аутентификацию: сервер не знает, кто вы (нет токена, токен неверный или истёк), нужно войти и повторить. 403 — про авторизацию: сервер знает, кто вы, но прав нет (обычный пользователь открывает эндпоинт админа). Повторный вход не поможет."
+      }
+    },
+    {
+      "id": "auth-send-token",
+      "topic": "auth",
+      "question": {
+        "en": "How does a client send credentials or a token to the server with each request?",
+        "ru": "Как клиент передаёт данные для входа или токен на сервер с каждым запросом?"
+      },
+      "answer": {
+        "en": "Most often in the Authorization header: \"Authorization: Bearer <token>\". Alternatively, in a cookie (preferably HttpOnly + Secure), which the browser sends automatically. Basic auth sends \"Authorization: Basic base64(login:password)\". This must always go over HTTPS, otherwise the token can be intercepted.",
+        "ru": "Чаще всего в заголовке Authorization: \"Authorization: Bearer <token>\". Либо в cookie (лучше HttpOnly + Secure), которую браузер отправляет автоматически. Basic-аутентификация: \"Authorization: Basic base64(login:password)\". Всегда только через HTTPS, иначе токен могут перехватить."
+      },
+      "answerCode": "fetch(\"/api/profile\", {\n  headers: { Authorization: \"Bearer \" + token },\n});"
+    },
+    {
+      "id": "auth-passwords",
+      "topic": "auth",
+      "question": {
+        "en": "How should passwords be stored in the database? Why not in plain text or with encryption?",
+        "ru": "Как нужно хранить пароли в базе данных? Почему не в открытом виде и не с шифрованием?"
+      },
+      "answer": {
+        "en": "Store only a hash made with a slow algorithm that uses a salt: bcrypt, argon2 or scrypt. On login, hash the entered password and compare the hashes. Plain text: one DB leak exposes every password. Encryption is reversible, so anyone with the key gets the passwords. Fast hashes like MD5/SHA-256 without a salt are easy to brute-force.",
+        "ru": "Хранить только хеш, сделанный медленным алгоритмом с солью: bcrypt, argon2 или scrypt. При входе хешируем введённый пароль и сравниваем хеши. Открытый текст: утечка БД раскрывает все пароли. Шифрование обратимо — у кого ключ, тот получит пароли. Быстрые хеши (MD5/SHA-256) без соли легко подобрать перебором."
+      }
+    },
+    {
+      "id": "pg-constraints-list",
+      "topic": "postgres",
+      "question": {
+        "en": "What are constraints in PostgreSQL? List the main types and why they are needed.",
+        "ru": "Что такое ограничения (constraints) в PostgreSQL? Перечислите основные виды и зачем они нужны."
+      },
+      "answer": {
+        "en": "Constraints are rules the database enforces on data, so invalid data can't be saved even if the application has a bug. NOT NULL — the value is required. UNIQUE — no duplicates. PRIMARY KEY — unique + not null row identifier. FOREIGN KEY — the value must exist in another table. CHECK — a custom condition (price > 0). EXCLUDE — prevents overlapping values (e.g. bookings). DEFAULT sets a value when none is provided.",
+        "ru": "Ограничения — правила, которые БД применяет к данным, чтобы некорректные данные нельзя было сохранить, даже если в приложении баг. NOT NULL — значение обязательно. UNIQUE — без повторов. PRIMARY KEY — уникальный и не NULL идентификатор строки. FOREIGN KEY — значение должно существовать в другой таблице. CHECK — своё условие (price > 0). EXCLUDE — запрет пересечений (например, бронирований). DEFAULT задаёт значение, если его не передали."
+      }
+    },
+    {
+      "id": "pg-primary-key",
+      "topic": "postgres",
+      "question": {
+        "en": "What is a primary key? What properties does it have? How do you create an auto-incrementing id?",
+        "ru": "Что такое первичный ключ (primary key)? Какими свойствами он обладает? Как создать автоинкрементный id?"
+      },
+      "answer": {
+        "en": "A primary key uniquely identifies each row. It is UNIQUE + NOT NULL, a table has only one, and it gets an index automatically. It can span several columns (composite key). Auto-increment: GENERATED ALWAYS AS IDENTITY (modern) or SERIAL (older). UUID is another option.",
+        "ru": "Первичный ключ однозначно идентифицирует каждую строку: UNIQUE + NOT NULL, в таблице только один, автоматически создаётся индекс. Может состоять из нескольких столбцов (составной ключ). Автоинкремент: GENERATED ALWAYS AS IDENTITY (современный способ) или SERIAL (старый). Другой вариант — UUID."
+      },
+      "answerCode": "CREATE TABLE users (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  email TEXT NOT NULL UNIQUE\n);"
+    },
+    {
+      "id": "pg-foreign-key",
+      "topic": "postgres",
+      "question": {
+        "en": "What is a foreign key and what does it guarantee? What happens if you insert an order with a non-existent user_id?",
+        "ru": "Что такое внешний ключ (foreign key) и что он гарантирует? Что будет, если вставить заказ с несуществующим user_id?"
+      },
+      "answer": {
+        "en": "A foreign key is a column that references the primary key (or unique column) of another table. It guarantees referential integrity: you can't reference a row that doesn't exist. Inserting an order with user_id = 999 when there is no such user fails with: violates foreign key constraint.",
+        "ru": "Внешний ключ — столбец, который ссылается на первичный ключ (или уникальный столбец) другой таблицы. Он гарантирует ссылочную целостность: нельзя сослаться на несуществующую строку. Вставка заказа с user_id = 999 при отсутствии такого пользователя завершится ошибкой violates foreign key constraint."
+      },
+      "answerCode": "CREATE TABLE orders (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  user_id INT NOT NULL REFERENCES users(id),\n  total NUMERIC(10, 2) NOT NULL\n);"
+    },
+    {
+      "id": "pg-check",
+      "topic": "postgres",
+      "question": {
+        "en": "Create a products table: id is the primary key, name is required, sku is unique, quantity defaults to 0.",
+        "ru": "Создайте таблицу products: id — первичный ключ, name обязателен, sku уникален, quantity по умолчанию 0."
+      },
+      "answer": {
+        "en": "Combine PRIMARY KEY, NOT NULL, UNIQUE and DEFAULT.",
+        "ru": "Комбинируем PRIMARY KEY, NOT NULL, UNIQUE и DEFAULT."
+      },
+      "answerCode": "CREATE TABLE products (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  name TEXT NOT NULL,\n  sku TEXT UNIQUE,\n  price NUMERIC(10, 2),\n  quantity INT NOT NULL DEFAULT 0\n);"
+    },
+    {
+      "id": "pg-relation-types",
+      "topic": "postgres",
+      "question": {
+        "en": "What types of relationships between tables exist? Give a real-life example of each.",
+        "ru": "Какие типы связей между таблицами существуют? Приведите пример из жизни для каждого."
+      },
+      "answer": {
+        "en": "One-to-one (1:1): user ↔ profile, country ↔ capital. One-to-many (1:N): user → many orders, category → many products. Many-to-many (M:N): students ↔ courses, products ↔ tags. 1:N uses a foreign key on the \"many\" side, M:N needs a junction table, and 1:1 uses a foreign key with UNIQUE.",
+        "ru": "Один к одному (1:1): пользователь ↔ профиль, страна ↔ столица. Один ко многим (1:N): пользователь → много заказов, категория → много товаров. Многие ко многим (M:N): студенты ↔ курсы, товары ↔ теги. Для 1:N — внешний ключ на стороне «многих», для M:N — промежуточная таблица, для 1:1 — внешний ключ с UNIQUE."
+      }
+    },
+    {
+      "id": "pg-one-to-many",
+      "topic": "postgres",
+      "question": {
+        "en": "How do you implement a one-to-many relationship? Create tables users and posts (a user has many posts).",
+        "ru": "Как реализовать связь один ко многим? Создайте таблицы users и posts (у пользователя много постов)."
+      },
+      "answer": {
+        "en": "The foreign key goes on the \"many\" side: each post stores the user_id of its author. One user can be referenced by many posts.",
+        "ru": "Внешний ключ ставится на стороне «многих»: каждый пост хранит user_id автора. На одного пользователя могут ссылаться много постов."
+      },
+      "answerCode": "CREATE TABLE users (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  name TEXT NOT NULL\n);\n\nCREATE TABLE posts (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,\n  title TEXT NOT NULL\n);"
+    },
+    {
+      "id": "pg-many-to-many",
+      "topic": "postgres",
+      "question": {
+        "en": "How do you implement a many-to-many relationship? Design tables for students and courses.",
+        "ru": "Как реализовать связь многие ко многим? Спроектируйте таблицы для студентов и курсов."
+      },
+      "answer": {
+        "en": "With a junction (join) table that has two foreign keys. The composite primary key (student_id, course_id) prevents enrolling the same student twice. The junction table can store extra data (enrolled_at, grade).",
+        "ru": "Через промежуточную (связующую) таблицу с двумя внешними ключами. Составной первичный ключ (student_id, course_id) не даёт записать студента на курс дважды. В связующей таблице можно хранить доп. данные (enrolled_at, grade)."
+      },
+      "answerCode": "CREATE TABLE enrollments (\n  student_id INT REFERENCES students(id) ON DELETE CASCADE,\n  course_id INT REFERENCES courses(id) ON DELETE CASCADE,\n  enrolled_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n  PRIMARY KEY (student_id, course_id)\n);"
+    }
+  ]
+}
